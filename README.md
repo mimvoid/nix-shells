@@ -1,5 +1,5 @@
 <h1 align="center">
-    mimvoid's mini nix shells
+    mimvoid's little nix shells
 </h1>
 <p align="center">
     My personal collection of nix shell files for
@@ -42,7 +42,7 @@ The names of the `devShells` can be found in `flake.nix`.
     # ...
     devShells = forAllSystems ({ pkgs }: {
       "hello" = import ./hello/shell.nix { inherit pkgs; };
-    };
+    });
   };
 }
 ```
@@ -71,8 +71,9 @@ $ nix-shell
 Nix's `shellHook` can provide aliases, but since `devShells` are made in `bash`,
 writing aliases in `shellHook` does not work for shells like `zsh`.
 
-This is especially a problem if one uses [direnv](https://direnv.net),
-which automatically drops you into your current shell.
+This is especially a problem if one uses [direnv](https://direnv.net) (e.g. with
+[nix-direnv](https://github.com/nix-community/nix-direnv)), which automatically
+drops you into your current shell.
 
 However, there is a workaround: `pkgs.writeShellScriptBin`. This is a trivial builder
 that writes a script file to `/nix/store/<store path>/bin/<file>`, and if included in
