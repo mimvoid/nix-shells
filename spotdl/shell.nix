@@ -17,8 +17,6 @@ pkgs.mkShell {
   packages = with pkgs;
     [
       spotdl
-    ]
-    ++ [
       aliases.spotdl-opus
     ];
 
