@@ -51,6 +51,12 @@ The names of the `devShells` can be found in `flake.nix`.
 $ nix develop .#hello
 ```
 
+To use a shell other than `bash`, you can do something like:
+
+```sh
+$ nix develop .#hello --command zsh
+```
+
 ## With `nix-shell`
 
 Enter the directory with the `shell.nix` file you want to use, and do `nix-shell`.
