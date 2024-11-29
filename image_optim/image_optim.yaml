@@ -1,0 +1,7 @@
+allow_lossy: false
+verbose: true
+timeout: 120
+gifsicle:
+  careful: true
+jpegoptim:
+  strip: ['com', 'iptc', 'icc', 'xmp']
