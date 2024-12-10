@@ -68,8 +68,6 @@ $ cd hello
 $ nix-shell
 ```
 
-</details>
-
 # Making Nix Shells
 
 ## Aliases
