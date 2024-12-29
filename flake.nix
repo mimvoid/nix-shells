@@ -7,19 +7,14 @@
 
   outputs = { self, nixpkgs }:
     let
-      allSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
+      allSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
 
-      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
-        pkgs = import nixpkgs { inherit system; };
-      });
+      toSystems = passPkgs: allSystems (system:
+        passPkgs (import nixpkgs { inherit system; })
+      );
     in
     {
-      devShells = forAllSystems ({ pkgs }: {
+      devShells = toSystems (pkgs: {
         default = pkgs.mkShell { packages = [ ]; };
 
         "image_optim" = import ./image_optim/shell.nix { inherit pkgs; };
